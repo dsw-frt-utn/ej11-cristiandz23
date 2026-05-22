@@ -9,7 +9,7 @@ public class Alumno
     public Alumno(int id, string nombre, double promedio)
     {
         Id = id;
-        Nombre = nombre;
+        Nombre = nombre.ToLower();
         Promedio = promedio;
     }
 
