@@ -10,7 +10,7 @@ namespace Dsw2026Ej11.Collections;
 public class CasoDictionary
 {
 
-    private Dictionary<Guid, Alumno>? alumnoDiccionario;
+    private Dictionary<Guid, Alumno> alumnoDiccionario;
 
 
     public CasoDictionary()
@@ -28,7 +28,16 @@ public class CasoDictionary
         throw new Exception("El diccionario no ha sido inicializado.");
     }
 
-    public Alumno BuscarAlumno(Guid legajo)
+    public void AgregarAlumno(Guid? legajo, Alumno alumno)
+    {
+        if (alumnoDiccionario is not null && legajo is not null)
+        {
+            alumnoDiccionario.Add(legajo.Value, alumno);
+            return;
+        }
+        throw new Exception("El diccionario no ha sido inicializado.");
+    }
+    public Alumno? BuscarAlumno(Guid legajo)
     {
         Alumno? alumno;
         
@@ -37,13 +46,15 @@ public class CasoDictionary
             if (alumnoDiccionario.TryGetValue(legajo, out alumno))
             {
                 return alumno;
+
             }
-            throw new Exception("No existe un alumno con ese legajo.");
+            return null;
+            // throw new Exception("No existe un alumno con ese legajo.");
         }
         throw new Exception("El diccionario no ha sido inicializado.");
     }
 
-    public Dictionary<Guid,Alumno>? GetAlumnoDiccionario() 
+    public Dictionary<Guid,Alumno> GetAlumnoDiccionario() 
     {
         return this.alumnoDiccionario;
     }

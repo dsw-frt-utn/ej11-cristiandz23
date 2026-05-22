@@ -12,7 +12,7 @@ namespace Dsw2026Ej11.Collections;
 public class CasoList
 {
     //Crear un campo que represente una lista de alumnos (List<>)
-    List<Alumno> alumnos;
+    private List<Alumno> alumnos;
 
     public CasoList()
     {
@@ -22,20 +22,38 @@ public class CasoList
         }
     }
 
+    public List<Alumno> GetAlumnos()
+    {
+        return alumnos;
+    }
+
+    public Alumno ObtenerAlumnoAlAzar()
+    {
+        Random random = new Random();
+        return alumnos[random.Next(alumnos.Count())];
+    }
+
     //Incluir un método para agregar alumnos a la lista
     public void AgregarAlumno(Alumno alumno)
     {
         alumnos.Add(alumno);
     }
+    public void AgregarAlumno(params Alumno[] alumnos)
+    {
+        foreach(Alumno al in alumnos)
+        {
+            this.alumnos.Add(al);
+        }
+    }
 
     //Incluir un método para buscar un alumno por nombre
-    public Alumno BuscarAlumno(string nombre) 
+    public Alumno? BuscarAlumno(string nombre) 
     {
 
         Alumno? alumno = alumnos.Find(alumno => alumno.Nombre.ToLower() == nombre.ToLower());
         if (alumno is not null)
             return alumno;
-        throw new Exception($"No se encontró un alumno con el nombre {nombre}");
+        return null;
     }
 
     //Incluir un método para eliminar un alumno (debe recibir un alumno)
