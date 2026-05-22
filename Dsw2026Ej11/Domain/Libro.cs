@@ -1,4 +1,6 @@
-﻿namespace Dsw2026Ej11.Domain;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Dsw2026Ej11.Domain;
 
 public class Libro
 {
@@ -11,6 +13,10 @@ public class Libro
         Id = id;
         Titulo = titulo;
         Precio = precio;
+    }
+    public override string ToString()
+    {
+        return $"{Id} - {Titulo} - precio: {Precio}";
     }
 
     public static List<Libro> CrearLista()
